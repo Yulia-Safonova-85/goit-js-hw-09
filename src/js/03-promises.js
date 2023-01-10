@@ -9,10 +9,10 @@ function onFormSubmit() {
 
   for (let i = 1; i <= form.amount.value; i += 1){
     createPromise(i, delay)
-      .then((res) => {
+      .then(({ position, delay }) => {
         Notiflix.Notify.success (`✅ Fulfilled promise ${position} in ${delay}ms`)
       })
-    .catch((rej) => {
+    .catch(({ position, delay }) => {
         Notiflix.Notify.failure (`❌ Rejected promise ${position} in ${delay}ms`);
       });
     delay += Number(form.step.value);
@@ -35,8 +35,6 @@ function createPromise(position, delay) {
   })
   return promise;
   }
-
-
 
   
 
