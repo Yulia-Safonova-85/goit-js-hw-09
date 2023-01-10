@@ -21,8 +21,8 @@ function changeBgColor() {
 }
 
 function onStartBtnClick() {
-    colorChangeId = setTimeout(() => {
-        changeBgColor(color);
+    colorChangeId = setInterval(() => {
+        changeBgColor();
     }, 1000);
     startBtn.setAttribute('disabled', true);
     stopBtn.removeAttribute('disabled');
@@ -30,7 +30,7 @@ function onStartBtnClick() {
 
 
 function onStopBtnClick() {
-    clearTimeout(colorChangeId);
+    clearInterval(colorChangeId);
     startBtn.removeAttribute('disabled');
     stopBtn.setAttribute('disabled', true);
 }
