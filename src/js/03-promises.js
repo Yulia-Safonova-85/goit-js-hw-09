@@ -4,16 +4,18 @@ const form = document.querySelector('.form');
 
 form.addEventListener('submit', onFormSubmit)
 
-function onFormSubmit() {
+function onFormSubmit(evt) {
+  evt.preventDefault();
+
   let delay = Number(form.delay.value);
 
   for (let i = 1; i <= form.amount.value; i += 1){
     createPromise(i, delay)
       .then(({ position, delay }) => {
-        Notiflix.Notify.success (`✅ Fulfilled promise ${position} in ${delay}ms`)
+        Notify.success (`✅ Fulfilled promise ${position} in ${delay}ms`)
       })
     .catch(({ position, delay }) => {
-        Notiflix.Notify.failure (`❌ Rejected promise ${position} in ${delay}ms`);
+        Notify.failure (`❌ Rejected promise ${position} in ${delay}ms`);
       });
     delay += Number(form.step.value);
   }
